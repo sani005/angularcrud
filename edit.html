@@ -1,0 +1,90 @@
+      <!-- Edit Contact Form -->
+      <div ng-hide="{{contactList.length === 0}}">
+      <h3>EDIT CONTACT {{ contactCopy.firstName }} {{ contactCopy.lastName }}</h3>
+      <form name="editform" ng-submit="editContact(contactCopy)" novalidate>
+        <div class="row">
+          <div class="col-md-8">
+
+        <div class="form-group" ng-class="{ 'has-error' : editform.firstName.$invalid && !editform.firstName.$pristine }">
+          <label for="firstName" class="pull-left">First Name</label>
+          <div class="width-60 pull-left"> 
+          <input ng-model="contactCopy.firstName" type="text" name="firstName" id="firstName" placeholder="Enter First Name" class="form-control" required>
+
+            <div ng-show="editform.firstName.$invalid && !editform.firstName.$pristine" class="help-block">Please enter your first name</div>
+          </div>  
+        </div>
+
+          
+          <div class="form-group" ng-class="{ 'has-error' : editform.lastName.$invalid && !editform.lastName.$pristine }">
+          <label for="lastName" class="pull-left">Last Name</label>
+
+          <div class="width-60 pull-left">
+          <input ng-model="contactCopy.lastName" type="text" name="lastName" id="lastName" placeholder="Enter Last Name" class="form-control" required>
+
+          <div ng-show="editform.firstName.$invalid && !editform.firstName.$pristine" class="help-block">Please enter your last name</div>
+        </div>
+        </div>
+
+          <div class="form-group" ng-class="{ 'has-error' : editform.birthday.$invalid && !editform.birthday.$pristine }">
+          <label for="birthday" class="pull-left">Birthday</label>
+
+          <div class="width-60 pull-left">
+            <input ng-model="contactCopy.birthday" type="date" name="birthday" id="birthday" placeholder="DD/MM/YYYY" class="form-control" required>
+            <div ng-show="editform.company.$invalid && !editform.company.$pristine" class="help-block">Please enter your birthday</div>
+          </div>
+        </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : editform.company.$invalid && !editform.company.$pristine }">
+          <label for="company" class="pull-left">Company</label>
+          <div class="width-60 pull-left">
+            <input ng-model="contactCopy.company" type="text" name="company" id="company" placeholder="Enter Company" class="form-control" required>
+            <div ng-show="editform.company.$invalid && !editform.company.$pristine" class="help-block">Please enter your company name</div>
+          </div>
+
+        </div>
+
+        <!-- email -->
+        <div class="form-group" ng-class="{ 'has-error' : editform.email.$invalid && !editform.email.$pristine }">
+            <label for="emailAddress" class="pull-left">Email Address</label>
+            <div class="width-60 pull-left">
+            <input type="email" name="email" ng-model="contactCopy.email" id="emailAddress" placeholder="example@domain.com" class="form-control" required>
+            <div ng-show="editform.email.$invalid && !editform.email.$pristine" class="help-block">Enter a valid email.</div>
+          </div>
+        </div>
+
+         <div class="form-group" ng-class="{ 'has-error' : editform.mobileNumber.$invalid && !editform.mobileNumber.$pristine }">
+          <label for="mobileNumber" class="pull-left">Mobile Number</label>
+          <div class="width-60 pull-left">
+          <input ng-model="contactCopy.mobileNumber" type="text" name="mobileNumber" id="mobileNumber" placeholder="000-000-000" class="form-control" required ng-pattern="phonePattern">
+            <div ng-show="editform.mobileNumber.$invalid && !editform.mobileNumber.$pristine " class="help-block">Enter a valid mobile number.</div>
+          </div>
+        </div> 
+
+          <div class="form-group">
+          <input ng-model="contactCopy.id" type="hidden">
+        </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+          <div class="img-holder">
+          <img ng-src="{{contactCopy.img ? contactCopy.img : 'images/default.jpg'}}" class="img-responsive" />
+          <div class="upload-holder">
+          <input id="file-input" type="file" class="inputfile" onchange="angular.element(this).scope().filesChangedEdited(this)">
+        </div>
+        </div>
+        </div>
+      </div>
+      </div>
+      <br />
+       <div class="row"> 
+      <div class="action-holder col-md-12">
+      <button type="submit" ng-disabled="editform.$invalid" class="btn btn-success btn-lg m-r-10" ng-click="form.$setPristine()">Save Edit</button>
+      <button type="reset" class="btn btn-warning btn-lg">Cancel</button>
+      </div>
+      </div>
+
+    </form>
+  </div>
+
+<div class="jumbotron" ng-show="{{contactList.length == 0}}"><h2>Please add contact details</h2></div>

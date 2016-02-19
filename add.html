@@ -1,0 +1,91 @@
+      <!-- Add Contact Form -->
+      <div>
+      <h3>ADD CONTACT {{ currentContact.firstName }} {{ currentContact.lastName }}</h3>
+
+<form name="contactform" ng-submit="saveContact()" novalidate>
+        <div class="row">
+          <div class="col-md-8">
+        <!-- NAME -->
+        <div class="form-group" ng-class="{ 'has-error' : contactform.firstName.$invalid && !contactform.firstName.$pristine }">
+          <label for="firstName" class="pull-left">First Name</label>
+          <div class="width-60 pull-left"> 
+          <input ng-model="currentContact.firstName" type="text" name="firstName" id="firstName" placeholder="Enter First Name" class="form-control" required>
+
+            <div ng-show="contactform.firstName.$invalid && !contactform.firstName.$pristine" class="help-block">Please enter your first name</div>
+          </div>  
+        </div>
+
+          
+          <div class="form-group" ng-class="{ 'has-error' : contactform.lastName.$invalid && !contactform.lastName.$pristine }">
+          <label for="lastName" class="pull-left">Last Name</label>
+
+          <div class="width-60 pull-left">
+          <input ng-model="currentContact.lastName" type="text" name="lastName" id="lastName" placeholder="Enter Last Name" class="form-control" required>
+
+          <div ng-show="contactform.firstName.$invalid && !contactform.firstName.$pristine" class="help-block">Please enter your last name</div>
+        </div>
+        </div>
+
+          <div class="form-group" ng-class="{ 'has-error' : contactform.birthday.$invalid && !contactform.birthday.$pristine }">
+          <label for="birthday" class="pull-left">Birthday</label>
+
+          <div class="width-60 pull-left">
+            <input ng-model="currentContact.birthday" type="date" name="birthday" id="birthday" placeholder="DD/MM/YYYY" class="form-control" required>
+            <div ng-show="contactform.company.$invalid && !contactform.company.$pristine" class="help-block">Please enter your birthday</div>
+          </div>
+        </div>
+
+            <div class="form-group" ng-class="{ 'has-error' : contactform.company.$invalid && !contactform.company.$pristine }">
+          <label for="company" class="pull-left">Company</label>
+          <div class="width-60 pull-left">
+            <input ng-model="currentContact.company" type="text" name="company" id="company" placeholder="Enter Company" class="form-control" required>
+            <div ng-show="contactform.company.$invalid && !contactform.company.$pristine" class="help-block">Please enter your company name</div>
+          </div>
+
+        </div>
+
+        <!-- email -->
+        <div class="form-group" ng-class="{ 'has-error' : contactform.email.$invalid && !contactform.email.$pristine }">
+            <label for="emailAddress" class="pull-left">Email Address</label>
+            <div class="width-60 pull-left">
+            <input type="email" name="email" ng-model="currentContact.email" id="emailAddress" placeholder="example@domain.com" class="form-control" required>
+            <div ng-show="contactform.email.$invalid && !contactform.email.$pristine" class="help-block">Enter a valid email.</div>
+          </div>
+        </div>
+
+         <div class="form-group" ng-class="{ 'has-error' : contactform.mobileNumber.$invalid && !contactform.mobileNumber.$pristine }">
+          <label for="mobileNumber" class="pull-left">Mobile Number</label>
+          <div class="width-60 pull-left">
+          <input ng-model="currentContact.mobileNumber" type="text" name="mobileNumber" id="mobileNumber" placeholder="000-000-000" class="form-control" required ng-pattern="phonePattern">
+            <div ng-show="contactform.mobileNumber.$invalid && !contactform.mobileNumber.$pristine " class="help-block">Enter a valid mobile number.</div>
+          </div>
+        </div> 
+
+          <div class="form-group">
+          <input ng-model="currentContact.id" type="hidden">
+        </div>
+      </div>
+
+      <div class="col-md-4">
+          <div class="form-group">
+          <div class="img-holder">
+          <img ng-src="{{currentContact.img ? currentContact.img : 'images/default.jpg'}}" class="img-responsive" />
+          <div class="upload-holder">
+          <input id="file-input" type="file" class="inputfile" onchange="angular.element(this).scope().filesChangedSaved(this)">
+        </div>
+        </div>
+        </div>
+      </div>
+      </div>
+      <br />
+       <div class="row">    
+      <div class="action-holder col-md-12">
+
+      <button type="submit" class="btn btn-success btn-lg m-r-10" ng-disabled="contactform.$invalid" ng-click="form.$setPristine()">Save</button> 
+       <button type="reset" class="btn btn-warning btn-lg">Cancel</button>    
+      </div>
+    </div>
+        
+    </form>
+      
+  </div>
