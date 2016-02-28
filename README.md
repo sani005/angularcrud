@@ -1,2 +1,2 @@
 # angularcrud
-A simple CRUD application using AngularJS 1.X
+A simple CRUD application using AngularJS 1.X and localstorage angular service
